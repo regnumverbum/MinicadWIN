@@ -1,1 +1,33 @@
+name: Izrada Windows EXE datoteke
+
+on:
+  workflow_dispatch: # Omogućuje ručno pokretanje jednim klikom
+
+jobs:
+  build:
+    runs-on: windows-latest # GitHub pokreće pravo Windows računalo u oblaku
+
+    steps:
+    - name: Preuzmi kod iz repozitorija
+      uses: actions/checkout@v4
+
+    - name: Postavi Python okruženje
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Instaliraj PyInstaller
+      run: |
+        python -m pip install --upgrade pip
+        pip install pyinstaller
+
+    - name: Zapakiraj Python program u EXE
+      run: |
+        pyinstaller --onefile MiniCad.py
+
+    - name: Spremi gotov EXE kao rezultat
+      uses: actions/upload-artifact@v4
+      with:
+        name: Windows-Program-EXE
+        path: dist/*.exe
 
