@@ -23,7 +23,7 @@ jobs:
 
     - name: Zapakiraj Python program u EXE
       run: |
-        pyinstaller --onefile main.py
+        pyinstaller --onefile MiniCad.py
 
     - name: Spremi gotov EXE kao rezultat
       uses: actions/upload-artifact@v4
