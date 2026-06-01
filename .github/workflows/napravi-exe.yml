@@ -1,11 +1,11 @@
 name: Izrada Windows EXE datoteke
 
 on:
-  workflow_dispatch: # Omogućuje ručno pokretanje jednim klikom
+  workflow_dispatch:
 
 jobs:
   build:
-    runs-on: windows-latest # GitHub pokreće pravo Windows računalo u oblaku
+    runs-on: windows-latest
 
     steps:
     - name: Preuzmi kod iz repozitorija
@@ -23,11 +23,10 @@ jobs:
 
     - name: Zapakiraj Python program u EXE
       run: |
-        pyinstaller --onefile MiniCad.py
+        pyinstaller --onefile main.py
 
     - name: Spremi gotov EXE kao rezultat
       uses: actions/upload-artifact@v4
       with:
         name: Windows-Program-EXE
         path: dist/*.exe
-
